@@ -1,0 +1,7 @@
+#!/bin/sh
+uci batch <<-EOF
+	set luci.themes.ZodiacGX=/luci-static/zodiacgx
+	set luci.main.mediaurlbase=/luci-static/zodiacgx
+	commit luci
+EOF
+exit 0

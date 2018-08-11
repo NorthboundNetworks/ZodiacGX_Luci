@@ -1,1 +1,1 @@
-# ZodiacGX_Luci
+# Luci_ZodiacGX
