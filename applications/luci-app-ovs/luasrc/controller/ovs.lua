@@ -4,9 +4,11 @@ function index()
 
 	entry({"admin", "OpenFlow"}, firstchild(), "OpenFlow", 60).dependent=false
 	entry({"admin", "OpenFlow", "flows"}, call("action_flows"), _("Flows"), 3)
-	entry({"admin", "OpenFlow", "groups"}, call("action_groups"), _("Groups"), 4)
-	entry({"admin", "OpenFlow", "ports"}, call("action_ports"), _("Ports"), 5)
-	entry({"admin", "OpenFlow", "tables"}, call("action_tables"), _("Tables"), 6)
+	entry({"admin", "OpenFlow", "tables"}, call("action_tables"), _("Tables"), 4)
+	entry({"admin", "OpenFlow", "groups"}, call("action_groups"), _("Groups"), 5)
+	entry({"admin", "OpenFlow", "meters"}, call("action_meters"), _("Meters"), 6)
+	entry({"admin", "OpenFlow", "ports"}, call("action_ports"), _("Ports"), 7)
+
 
 end
 
@@ -20,6 +22,12 @@ end
 function action_groups()
 	local groups = luci.sys.exec("ovs-ofctl -O OpenFlow13 dump-groups ovslan")
 	luci.template.render("groups", {groups=groups})
+end
+
+-- Get meters output
+function action_meters()
+	local meters = luci.sys.exec("ovs-ofctl -O OpenFlow13 dump-meters ovslan")
+	luci.template.render("meters", {meters=meters})
 end
 
 -- Get ports output
